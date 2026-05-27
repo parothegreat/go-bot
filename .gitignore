@@ -1,0 +1,19 @@
+# Binaries
+recon-bot
+main
+
+# Env files
+.env
+
+# Local data and logs
+data/
+logs/
+bot.log
+resume.cfg
+
+# Dependency directories
+vendor/
+
+# System files
+.DS_Store
+*.swp
