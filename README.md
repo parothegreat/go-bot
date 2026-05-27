@@ -4,63 +4,63 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Autonomous-orange.svg)]()
 
-**Nodebuntu Recon Agent** adalah operator cybersecurity otonom berbasis AI yang berjalan langsung di server Ubuntu. Bot ini bukan sekadar chatbot biasa; ia adalah agen yang memiliki "siklus pemikiran" sendiri untuk melakukan pengintaian (reconnaissance), analisis kerentanan, dan pemantauan server secara proaktif.
+**Nodebuntu Recon Agent** is an autonomous AI-driven cybersecurity operator running directly on an Ubuntu server. This bot is more than just a chatbot; it's an agent with its own "thought cycle" designed for proactive reconnaissance, vulnerability analysis, and server monitoring.
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Key Features
 
-- **🧠 Agentic AI Loop:** Menggunakan LLM (Groq/OpenRouter) untuk berpikir, memilih tool, dan bertindak secara otonom.
-- **🛡️ Autonomous Mode:** AI dapat bekerja sendiri di background (`/autoon`) untuk mencari celah keamanan tanpa perintah manual.
-- **📡 Advanced Monitoring:** Laporan status server real-time dengan visualisasi penggunaan CPU, RAM, Disk, serta status layanan (Nginx, SSH, Tor, dll).
-- **🔍 Integrated Recon Toolkit:** Orkestrasi otomatis untuk `subfinder`, `nuclei`, `httpx`, `naabu`, dan `katana`.
+- **🧠 Agentic AI Loop:** Utilizes LLMs (Groq/OpenRouter) to reason, select tools, and act autonomously.
+- **🛡️ Autonomous Mode:** The AI works independently in the background (`/autoon`) to find security flaws without manual commands.
+- **📡 Advanced Monitoring:** Real-time server status reports with visualizations for CPU, RAM, Disk usage, and service health (Nginx, SSH, Tor, etc.).
+- **🔍 Integrated Recon Toolkit:** Automated orchestration for `subfinder`, `nuclei`, `httpx`, `naabu`, and `katana`.
 - **🔒 Security First:** 
-    - **No Hardcoded Passwords:** Menggunakan sistem `sudoers` untuk operasi root.
-    - **Injection Shielding:** Melindungi AI dari manipulasi input melalui isolasi output tool.
-    - **Command Allowlist:** Membatasi perintah yang dapat dijalankan AI demi keamanan sistem.
+    - **No Hardcoded Passwords:** Uses the `sudoers` system for root operations.
+    - **Injection Shielding:** Protects the AI from malicious input through tool output isolation.
+    - **Command Allowlist:** Restricts executable commands for system safety.
 
 ---
 
-## 🏗️ Arsitektur Proyek
+## 🏗️ Project Architecture
 
-Proyek ini dibangun dengan struktur modular yang bersih:
+The project is built with a clean modular structure:
 
-- `internal/state/`: Pusat kendali status global dan memori AI.
-- `pkg/ai/`: Logika mesin AI, pemrosesan perintah, dan loop otonom.
-- `pkg/tools/`: Layer eksekusi perintah sistem dan validasi keamanan.
-- `pkg/recon/`: Logika inti reconnaissance dan manajemen scope.
-- `pkg/bot/`: Interface Telegram dan penanganan perintah pengguna.
+- `internal/state/`: Central hub for global state and AI memory.
+- `pkg/ai/`: AI engine logic, command processing, and autonomous loops.
+- `pkg/tools/`: System command execution layer and security validation.
+- `pkg/recon/`: Core reconnaissance logic and scope management.
+- `pkg/bot/`: Telegram interface and user command handling.
 
 ---
 
-## 🚀 Instalasi & Persiapan
+## 🚀 Installation & Setup
 
-### 1. Prasyarat
-- Go 1.22 atau lebih baru.
-- Token Bot Telegram.
-- API Key Groq atau OpenRouter.
+### 1. Prerequisites
+- Go 1.22 or newer.
+- Telegram Bot Token.
+- Groq or OpenRouter API Key.
 
-### 2. Kloning & Konfigurasi
+### 2. Clone & Configure
 ```bash
 git clone https://github.com/parothegreat/go-bot.git
 cd go-bot
 ```
 
-Buat file `.env` di direktori utama:
+Create a `.env` file in the root directory:
 ```env
 TELEGRAM_TOKEN=your_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
 AI_API_KEY=your_ai_api_key
-# Opsional:
+# Optional:
 # AI_BASE_URL=https://openrouter.ai/api/v1
 # AI_MODEL=llama-3.3-70b-versatile
 ```
 
-### 3. Keamanan Sudo (Penting!)
-Agar fitur `/clean` berfungsi aman, tambahkan user Anda ke sudoers:
+### 3. Sudo Security (Crucial!)
+To enable the `/clean` feature safely, add your user to sudoers:
 ```bash
 sudo visudo
-# Tambahkan baris berikut di akhir file:
+# Add the following line at the end of the file:
 username ALL=(ALL) NOPASSWD: /usr/bin/apt autoremove, /usr/bin/apt clean
 ```
 
@@ -72,25 +72,25 @@ go build -o recon-bot main.go
 
 ---
 
-## 🎮 Cara Penggunaan
+## 🎮 Usage
 
-### Perintah Telegram
-- `/status` - Melihat kondisi server dan progres recon.
-- `/scan` - Menjalankan siklus pengintaian penuh secara manual.
-- `/autoon` - Mengaktifkan **Mode Otonom** (AI akan bekerja sendiri).
-- `/missions` - Melihat apa yang telah dikerjakan AI secara otonom.
-- `/thought` - Mengintip proses berpikir/analisis terakhir AI.
-- `/ai <tanya>` - Berinteraksi langsung dengan AI Agent.
-
----
-
-## 🤝 Kontribusi
-Kontribusi sangat terbuka! Silakan buka *Issue* atau kirimkan *Pull Request*.
+### Telegram Commands
+- `/status` - View server health and recon progress.
+- `/scan` - Run a full reconnaissance cycle manually.
+- `/autoon` - Enable **Autonomous Mode** (AI works independently).
+- `/missions` - View autonomous AI activity logs.
+- `/thought` - Inspect the AI's latest reasoning/analysis.
+- `/ai <query>` - Interact directly with the AI Agent.
 
 ---
 
-## 📄 Lisensi
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+## 🤝 Contributing
+Contributions are welcome! Please open an *Issue* or submit a *Pull Request*.
 
 ---
-*Dibuat dengan ❤️ untuk komunitas Cybersecurity.*
+
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).
+
+---
+*Built with ❤️ for the Cybersecurity community.*
