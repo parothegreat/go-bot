@@ -38,3 +38,4 @@ func IsPathAllowed(path string) bool {
 	}
 	return false
 }
+
